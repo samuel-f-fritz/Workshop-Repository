@@ -1,1 +1,10 @@
-rpois(50, 4)
+library(tidyverse)
+
+zero_sims <- data.frame(Count = 0, Type = rep("Extra Zero",20))
+
+Poisson_sims <- data.frame(Count = rpois(50, 5), Type = "Poisson")
+
+Zero_inflation <- rbind(zero_sims, Poisson_sims)
+
+ggplot(data = Zero_inflation, aes(x = Count, fill = Type))+
+  geom_histogram()
